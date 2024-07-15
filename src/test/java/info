@@ -1,0 +1,23 @@
+<tr th:each="user : ${users}" onmouseover="this.style.background='#F8F9FA'" onmouseout="this.style.background='white'">
+                                        <td th:text="${user.getId()}"/>
+                                        <td th:text="${user.getUsername()}"/>
+                                        <td th:text="${user.getPassword().substring(0, 10)}+'...'" style="max-width: 50px"/>
+                                        <td th:text="${user.getName()}"/>
+                                        <td th:text="${user.getAge()}"/>
+                                        <td th:text="${user.getEmail()}"/>
+                                        <td th:text="${user.getRoles()}"/>
+
+                                        <td>
+
+<!--                                            <button th:href="@{'/admin/edit?id='+${user.getId()}}"> Edit </button>-->
+                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" th:data-bs-target="'#edit' + ${user.id}" style="background-color: #17A2B8; color: white">
+                                                Edit
+                                            </button>
+                                        </td>
+
+                                        <td>
+                                            <form th:method="DELETE" th:action="@{/admin/{id} (id=${user.getId()})}" th:object="${user}">
+                                                <input type="submit" class="btn btn-primary" style="background-color: #DC3545; color: white" value="Delete"/>
+                                            </form>
+                                        </td>
+                                    </tr>
